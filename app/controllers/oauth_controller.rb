@@ -3,7 +3,7 @@ class OauthController < ApplicationController
   def login
     redirect_to OAUTH_CLIENT.auth_code.authorize_url(
       redirect_uri: callback_url
-    )
+    ), allow_other_host: true
   end
 
   def callback
