@@ -1,0 +1,8 @@
+<h1>Welcome to the Client App</h1>
+
+<% if session[:access_token] %>
+  <p>✅ Logged in!</p>
+  <%= button_to "Logout", logout_path, method: :delete %>
+<% else %>
+  <%= link_to "Login with Auth Server", "http://localhost:3001/login", class: "btn btn-primary" %>
+<% end %>
