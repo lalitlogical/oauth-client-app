@@ -7,13 +7,28 @@ class OauthController < ApplicationController
   end
 
   def callback
-    token = OAUTH_CLIENT.auth_code.get_token(
-      params[:code],
-      redirect_uri: callback_url
-    )
+    if params[:error].present?
+      flash[:error] = params[:error_description]
+      redirect_to root_path
+    else
+      token = OAUTH_CLIENT.auth_code.get_token(
+        params[:code],
+        redirect_uri: callback_url
+      )
 
-    session[:access_token] = token.token
-    redirect_to root_path
+      response = token.get("/oauth/userinfo")
+      user_info = JSON.parse(response.body)
+
+      user = User.find_or_create_by(email: user_info["email"]) do |u|
+        u.password = Devise.friendly_token[0, 20]
+      end
+
+      if user.persisted?
+        sign_in_and_redirect user, event: :authentication
+      else
+        redirect_to root_path, alert: "Could not authenticate."
+      end
+    end
   end
 
   def protected

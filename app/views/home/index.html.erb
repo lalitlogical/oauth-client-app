@@ -1,8 +1,17 @@
-<h1>Welcome to the Client App</h1>
+<div class="container py-5">
+  <div class="text-center">
+    <h1 class="display-4 mb-4">Welcome to OAuth Demo App</h1>
 
-<% if session[:access_token] %>
-  <p>✅ Logged in!</p>
-  <%= button_to "Logout", logout_path, method: :delete %>
-<% else %>
-  <%= link_to "Login with Auth Server", "http://localhost:3001/login", class: "btn btn-primary" %>
-<% end %>
+    <% if user_signed_in? %>
+      <p class="lead">Hello, <strong><%= current_user.email %></strong>! You are logged in.</p>
+      <div class="d-grid gap-2 d-md-block mt-4">
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-danger btn-lg" %>
+      </div>
+    <% else %>
+      <p class="lead">Please sign in to access your dashboard.</p>
+      <div class="d-grid gap-2 d-md-block mt-4">
+        <%= link_to 'Login', login_path, class: "btn btn-primary btn-lg me-2" %>
+      </div>
+    <% end %>
+  </div>
+</div>

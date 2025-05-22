@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users, skip: [ :registrations, :passwords, :confirmations ]
+
+  # Only allow callback handling
+  devise_scope :user do
+    get "/users/auth/:provider/callback", to: "users/omniauth_callbacks#<provider>"
+    delete "/logout", to: "devise/sessions#destroy", as: :logout
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get "/login", to: "oauth#login"
   get "/callback", to: "oauth#callback"
