@@ -8,12 +8,11 @@ Rails.application.routes.draw do
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  get "/login", to: "oauth#login"
-  get "/callback", to: "oauth#callback"
-  get "/protected", to: "oauth#protected"
-  delete "/logout", to: "oauth#destroy"
+  get "/oauth/login", to: "oauth#login"
+  get "/oauth/callback", to: "oauth#callback"
+  get "/oauth/protected", to: "oauth#protected"
+  delete "/oauth/logout", to: "oauth#destroy"
 
-  # config/routes.rb
   namespace :api do
     namespace :v1 do
       get "/me", to: "me#show"

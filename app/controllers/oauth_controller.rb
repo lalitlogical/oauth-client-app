@@ -45,6 +45,6 @@ class OauthController < ApplicationController
   private
 
   def callback_url
-    "#{request.base_url}/callback"
+    "#{request.base_url}/oauth/callback"
   end
 end
