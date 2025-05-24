@@ -21,6 +21,7 @@
     <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </head>
 
   <body>
@@ -50,13 +51,15 @@
       </div>
     </nav>
     
-    <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key == "notice" ? "success" : "danger" %> alert-dismissible fade show mt-3 mx-4" role="alert">
-        <%= value %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    <% end %>
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key == "notice" ? "success" : "danger" %> alert-dismissible fade show mt-3 mx-4" role="alert">
+          <%= value %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>
