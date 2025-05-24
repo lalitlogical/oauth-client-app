@@ -72,3 +72,4 @@ gem "bootstrap", "~> 5.3"
 
 gem "devise", "~> 4.9"
 gem "byebug"
+gem 'ruby-kafka'

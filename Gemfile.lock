@@ -115,6 +115,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    digest-crc (0.7.0)
+      rake (>= 12.0.0, < 14.0.0)
     dotenv (3.1.8)
     drb (2.2.3)
     ed25519 (1.4.0)
@@ -325,6 +327,8 @@ GEM
       rubocop (>= 1.72)
       rubocop-performance (>= 1.24)
       rubocop-rails (>= 2.30)
+    ruby-kafka (1.5.0)
+      digest-crc
     ruby-progressbar (1.13.0)
     rubyzip (2.4.1)
     sassc (2.4.0)
@@ -451,6 +455,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 8.0.2)
   rubocop-rails-omakase
+  ruby-kafka
   sassc-rails
   selenium-webdriver
   solid_cable
