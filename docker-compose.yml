@@ -22,12 +22,16 @@ services:
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
       DB_DATABASE: oauth_client
+      # OAUTH_HOST: http://idp.myapp.local
+      OAUTH_HOST: http://host.docker.internal:3000
+      OAUTH_CLIENT_ID: web-frontend-app-client-id
+      OAUTH_CLIENT_SECRET: web-frontend-app-client-secret
     depends_on:
       - db
 
   kafka-consumer:
     build: .
-    command: bash -c "bundle exec rake db:migrate && bundle exec rake kafka:consume"
+    command: ["bundle", "exec", "rake", "kafka:consume"]
     volumes:
       - .:/myapp
     environment:
@@ -36,6 +40,8 @@ services:
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
       DB_DATABASE: oauth_client
+      # KAFKA_BROKERS: kafka-idp:9092
+      KAFKA_BROKERS: host.docker.internal:9092
     depends_on:
       - db
       - web

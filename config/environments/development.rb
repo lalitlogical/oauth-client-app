@@ -71,4 +71,5 @@ Rails.application.configure do
   # config.generators.apply_rubocop_autocorrect_after_generate!
   config.assets.enabled = true
   config.hosts << "client.myapp.local"
+  config.hosts << "host.docker.internal:3000"
 end

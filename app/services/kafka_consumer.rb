@@ -2,7 +2,8 @@ require "kafka"
 
 class KafkaConsumer
   def initialize(topic = "doorkeeper-events", group_id = "client_app")
-    @kafka = Kafka.new([ "host.docker.internal:9092" ])
+    brokers = ENV.fetch("KAFKA_BROKERS", "localhost:9092")
+    @kafka = Kafka.new(brokers.split(","))
     @topic = topic
     @group_id = group_id
   end
