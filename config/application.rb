@@ -29,5 +29,6 @@ module OauthClientApp
     config.hosts << "host.docker.internal:3000"
     config.hosts << "oauth-client-service"
     config.hosts << "accounts.lalit.local"
+    config.hosts << "oauth-idp-service"
   end
 end
