@@ -30,6 +30,7 @@ module OauthClientApp
     config.hosts << "oauth-client-service"
     config.hosts << "accounts.lalit.local"
     config.hosts << "oauth-idp-service"
+    config.hosts << "oauth-client-app-service"
 
     config.log_formatter = ::Logger::Formatter.new
     config.logger = ActiveSupport::Logger.new($stdout)
