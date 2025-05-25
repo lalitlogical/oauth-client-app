@@ -24,5 +24,9 @@ module OauthClientApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.hosts << "client.myapp.local"
+    config.hosts << "client.lalit.local"
+    config.hosts << "host.docker.internal:3000"
+    config.hosts << "oauth-client-service"
   end
 end
