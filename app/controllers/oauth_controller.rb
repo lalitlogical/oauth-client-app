@@ -11,17 +11,7 @@ class OauthController < ApplicationController
       flash[:error] = params[:error_description]
       redirect_to root_path
     else
-      token = OAUTH_CLIENT.auth_code.get_token(
-        params[:code],
-        redirect_uri: callback_url
-      )
-
-      response = token.get("/oauth/userinfo")
-      user_info = JSON.parse(response.body)
-
-      user = User.find_or_create_by(email: user_info["email"]) do |u|
-        u.password = Devise.friendly_token[0, 20]
-      end
+      user = OauthLoginService.new(params[:code], callback_url).authenticate
 
       if user.persisted?
         sign_in_and_redirect user, event: :authentication

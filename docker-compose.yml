@@ -12,6 +12,7 @@ x-rails-base: &rails-base
     DB_DATABASE: oauth_client
     # OAUTH_HOST: http://idp.myapp.local
     OAUTH_HOST: http://host.docker.internal:3000
+    BACKEND_OAUTH_HOST: http://host.docker.internal:3000
     OAUTH_CLIENT_ID: web-frontend-app-client-id
     OAUTH_CLIENT_SECRET: web-frontend-app-client-secret
     # KAFKA_BROKERS: kafka-idp:9092

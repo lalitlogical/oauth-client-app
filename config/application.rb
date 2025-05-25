@@ -28,5 +28,6 @@ module OauthClientApp
     config.hosts << "client.lalit.local"
     config.hosts << "host.docker.internal:3000"
     config.hosts << "oauth-client-service"
+    config.hosts << "accounts.lalit.local"
   end
 end
