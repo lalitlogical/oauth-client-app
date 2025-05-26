@@ -24,9 +24,9 @@ class KafkaConsumer
   def handle_event(data)
     case data["event"]
     when "user_logged_in"
-      puts "User logged in from IDP: #{data["payload"]["email"]}"
+      Rails.logger.info "User logged in from IDP: #{data["payload"]["email"]}"
     when "user_active_state"
-      puts "User active state from IDP: #{data["payload"]["email"]} is active #{data["payload"]["active"]}"
+      Rails.logger.info "User active state from IDP: #{data["payload"]["email"]} is active #{data["payload"]["active"]}"
       user = User.find_by(email: data["payload"]["email"])
       user.update(active: data["payload"]["active"]) if user
     end
