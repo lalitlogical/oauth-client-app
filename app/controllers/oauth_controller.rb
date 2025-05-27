@@ -13,7 +13,7 @@ class OauthController < ApplicationController
     else
       user = OauthLoginService.new(params[:code], callback_url).authenticate
 
-      if user.persisted?
+      if user.present?
         sign_in_and_redirect user, event: :authentication
       else
         redirect_to root_path, alert: "Could not authenticate."

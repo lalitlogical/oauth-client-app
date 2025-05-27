@@ -8,11 +8,14 @@ class OauthLoginService
     token = client.auth_code.get_token(@code, redirect_uri: @redirect_uri)
     user_info = JSON.parse(token.get("/oauth/userinfo").body)
 
-    user = User.find_or_create_by(email: user_info["email"]) do |u|
-      u.password = Devise.friendly_token[0, 20]
+    if email ||= user_info.try(:[], "email")
+      user = User.find_or_create_by(email: email) do |u|
+        u.password = Devise.friendly_token[0, 20]
+      end
+
+      return user if user.persisted?
     end
 
-    return user if user.persisted?
     nil
   end
 
