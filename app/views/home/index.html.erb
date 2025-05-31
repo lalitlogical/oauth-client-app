@@ -14,4 +14,23 @@
       </div>
     <% end %>
   </div>
+
+  <hr/>
+  
+  <div class="text-center row">
+    <div class="col-4">&nsc;</div>
+    <div class="col-4">
+      <%= form_with url: "/shorten", method: :post, class: 'form-inline' do |form| %>
+        <div class="row g-3">
+          <div class="col mb-4">
+            <%= form.url_field :original_url, class: 'form-control' %>
+          </div>
+          <div class="col mb-4">
+            <%= form.submit "Create Shorten Url", class: "btn btn-primary px-4" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-4">&nsc;</div>
+  </div>
 </div>
