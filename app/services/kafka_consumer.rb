@@ -33,7 +33,7 @@ class KafkaConsumer
     when "user.activated", "user.deactivated"
       Rails.logger.info "User active state from IDP: #{data["payload"]["email"]} is active #{data["payload"]["active"]}"
 
-      user = User.find_by(email: data["payload"]["email"])
+      user = User.find_by(openid: data["payload"]["user_id"])
       user.update(active: data["payload"]["active"]) if user
     end
   end
